@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Triage Assistant</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🩺</span>
+    <span data-i18n="appName">Triage Assistant</span>
+  </div>
+  <div class="controls">
+    <select id="langSwitch" aria-label="Language">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+    </select>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card" id="inputCard">
+    <h2 data-i18n="describeTitle">Describe your problem</h2>
+    <p class="hint" data-i18n="describeHint">Tell us your symptoms in your own words. You can also attach a photo of the affected area.</p>
+
+    <label for="symptoms" data-i18n="symptomLabel">Symptoms</label>
+    <textarea id="symptoms" rows="4"
+      data-i18n-placeholder="symptomPlaceholder"
+      placeholder="e.g. fever since 2 days, headache, sore throat"></textarea>
+
+    <label for="photoInput" data-i18n="photoLabel">Photo (optional)</label>
+    <div id="dropZone" class="dropzone">
+      <input type="file" id="photoInput" accept="image/*" hidden />
+      <span id="dropText" data-i18n="dropText">📷 Tap to choose or drop an image here</span>
+      <img id="photoPreview" alt="" hidden />
+      <button id="removePhoto" class="ghost" hidden data-i18n="removePhoto">✕ Remove photo</button>
+    </div>
+
+    <button id="analyzeBtn" class="primary">
+      <span data-i18n="analyze">Get Instant Result</span>
+      <span id="analyzeSpinner" class="spinner" hidden></span>
+    </button>
+    <p id="errorMsg" class="error" hidden></p>
+  </section>
+
+  <section class="card result hidden" id="resultCard">
+    <div class="result-head">
+      <h2 data-i18n="resultTitle">Triage Result</h2>
+      <div class="result-actions">
+        <button id="speakBtn" class="ghost">🔊 <span data-i18n="speak">Listen</span></button>
+        <button id="stopBtn" class="ghost" hidden>⏹ <span data-i18n="stop">Stop</span></button>
+      </div>
+    </div>
+    <div id="resultContent" class="result-content"></div>
+  </section>
+
+  <p class="disclaimer" data-i18n="disclaimer">
+    ⚠️ This tool provides preliminary guidance only and is not a substitute for professional medical advice. In an emergency, call your local emergency number immediately.
+  </p>
+</main>
+
+<script src="i18n.js"></script>
+<script src="triage.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
